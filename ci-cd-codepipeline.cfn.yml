@@ -3,20 +3,20 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: EKSWSV1
 
-
 Parameters:
-
   EksClusterName:
     Type: String
     Description: TODO - The name of the EKS cluster created
-    Default: eksctl-demo
+    Default: aliu-demo
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter the EKS cluster name
 
   GitSourceRepo:
     Type: String
-    Description: TODO - GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
+    Description:
+      TODO - GitHub source repository - must contain a Dockerfile and
+      buildspec.yml in the base
     Default: cd0157_Final_Pipeline
     MinLength: 1
     MaxLength: 100
@@ -25,7 +25,8 @@ Parameters:
   GitBranch:
     Type: String
     Default: main
-    Description: TODO - GitHub git repository branch - change triggers a new build
+    Description:
+      TODO - GitHub git repository branch - change triggers a new build
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub repository branch name
@@ -33,14 +34,16 @@ Parameters:
   GitHubToken:
     Type: String
     NoEcho: true
-    Description: TODO - GitHub API token - see https://github.com/blog/1509-personal-api-tokens
+    Description:
+      TODO - GitHub API token - see
+      https://github.com/blog/1509-personal-api-tokens
     MinLength: 3
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub personal access token
 
   GitHubUser:
     Type: String
-    Default: SudKul
+    Default: Aliiiu
     Description: TODO - GitHub username or organization
     MinLength: 3
     MaxLength: 100
@@ -61,7 +64,6 @@ Parameters:
     MinLength: 3
     MaxLength: 100
     ConstraintDescription: You must enter a kubectl IAM role
-
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -101,9 +103,7 @@ Metadata:
       EksClusterName:
         default: EKS cluster name
 
-
 Resources:
-
   EcrDockerRepository:
     Type: AWS::ECR::Repository
     DeletionPolicy: Retain
@@ -216,7 +216,7 @@ Resources:
           PolicyDocument:
             Version: 2012-10-17
             Statement:
-              - Resource: "*"
+              - Resource: '*'
                 Effect: Allow
                 Action:
                   - codebuild:StartBuild
